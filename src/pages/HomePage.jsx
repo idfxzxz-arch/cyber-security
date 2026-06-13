@@ -6,6 +6,7 @@ import PhishingCard from '../components/PhishingCard'
 import PracticeCard from '../components/PracticeCard'
 import QuizCard from '../components/QuizCard'
 import TipCard from '../components/TipCard'
+import { useAppPreferences } from '../context/useAppPreferences'
 import { materiData } from '../data/materiData'
 import { phishingData } from '../data/phishingData'
 import { practiceData } from '../data/practiceData'
@@ -33,14 +34,16 @@ function SectionHeader({ eyebrow, title, description, action }) {
 }
 
 function HomePage() {
+  const { t } = useAppPreferences()
+
   return (
     <>
       <HeroSection />
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Topik utama"
-          title="Ringkasan area pembelajaran"
-          description="Mulai dari ancaman yang paling sering muncul di email sampai kebiasaan menjaga data perusahaan."
+          eyebrow={t.home.topicsEyebrow}
+          title={t.home.topicsTitle}
+          description={t.home.topicsDescription}
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {topics.map((topic) => {
@@ -61,10 +64,10 @@ function HomePage() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Materi pilihan"
-            title="Baca materi penting"
-            description="Beberapa materi awal untuk membangun fondasi keamanan siber di lingkungan kerja."
-            action={<Link className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" to="/materi">Lihat semua materi</Link>}
+            eyebrow={t.home.materialsEyebrow}
+            title={t.home.materialsTitle}
+            description={t.home.materialsDescription}
+            action={<Link className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50" to="/materi">{t.home.seeAllMaterials}</Link>}
           />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {materiData.slice(0, 3).map((material) => (
@@ -77,9 +80,9 @@ function HomePage() {
       <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
         <div>
           <SectionHeader
-            eyebrow="Tips keamanan"
-            title="Kebiasaan singkat yang berdampak besar"
-            description="Tips praktis yang bisa diterapkan setiap hari saat memakai perangkat dan aplikasi kerja."
+            eyebrow={t.home.tipsEyebrow}
+            title={t.home.tipsTitle}
+            description={t.home.tipsDescription}
           />
           <div className="grid gap-4">
             {tipsData.slice(0, 3).map((tip) => (
@@ -89,9 +92,9 @@ function HomePage() {
         </div>
         <div>
           <SectionHeader
-            eyebrow="Simulasi phishing"
-            title="Latih insting membaca email"
-            description="Contoh skenario email, OTP, malware, WiFi publik, dan data sharing untuk membedakan kondisi aman, mencurigakan, dan berisiko."
+            eyebrow={t.home.simulationEyebrow}
+            title={t.home.simulationTitle}
+            description={t.home.simulationDescription}
           />
           <PhishingCard email={phishingData[1]} />
         </div>
@@ -100,10 +103,10 @@ function HomePage() {
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="AI Agent"
-            title="Tanya assistant keamanan siber"
-            description="Agent edukasi berbasis data lokal untuk menjawab pertanyaan umum tentang phishing, OTP, password, malware, data, remote work, dan insiden."
-            action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/ai-agent"><Bot className="h-4 w-4" />Buka AI Agent</Link>}
+            eyebrow={t.home.aiEyebrow}
+            title={t.home.aiTitle}
+            description={t.home.aiDescription}
+            action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/ai-agent"><Bot className="h-4 w-4" />{t.common.openAiAgent}</Link>}
           />
           <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-sm">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -112,14 +115,14 @@ function HomePage() {
                   <Bot className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-slate-950">Bantuan cepat tanpa memenuhi halaman</h3>
+                  <h3 className="text-xl font-bold text-slate-950">{t.home.aiCardTitle}</h3>
                   <p className="mt-2 leading-7 text-slate-600">
-                    Klik tombol AI Agent di pojok kanan bawah untuk membuka chat pop-up profesional kapan pun dibutuhkan.
+                    {t.home.aiCardDescription}
                   </p>
                 </div>
               </div>
               <Link className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" to="/ai-agent">
-                Mode penuh
+                {t.common.fullMode}
               </Link>
             </div>
           </div>
@@ -129,10 +132,10 @@ function HomePage() {
       <section>
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Praktik"
-            title="Coba simulasi keputusan"
-            description="Pengguna membaca skenario, memilih tindakan, lalu mendapat feedback langsung tentang keamanan pilihannya."
-            action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/praktik"><ClipboardCheck className="h-4 w-4" />Buka praktik</Link>}
+            eyebrow={t.home.practiceEyebrow}
+            title={t.home.practiceTitle}
+            description={t.home.practiceDescription}
+            action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/praktik"><ClipboardCheck className="h-4 w-4" />{t.home.openPractice}</Link>}
           />
           <PracticeCard practice={practiceData[0]} />
         </div>
@@ -141,10 +144,10 @@ function HomePage() {
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
-            eyebrow="Kuis ringan"
-            title="Cek pemahaman dasar"
-            description="Satu contoh soal dari kuis cybersecurity. Buka halaman kuis untuk menyelesaikan seluruh pertanyaan dan melihat skor akhir."
-            action={<Link className="rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/kuis">Mulai kuis</Link>}
+            eyebrow={t.home.quizEyebrow}
+            title={t.home.quizTitle}
+            description={t.home.quizDescription}
+            action={<Link className="rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/kuis">{t.home.startQuiz}</Link>}
           />
           <QuizCard index={0} onSelect={() => {}} question={quizData[0]} selected="" />
         </div>

@@ -1,16 +1,10 @@
 import { Bot, CornerDownLeft, RotateCcw, UserRound } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAppPreferences } from '../context/useAppPreferences'
 import { aiKnowledgeBase, suggestedQuestions } from '../data/aiAgentData'
 
-const initialMessages = [
-  {
-    role: 'agent',
-    text: 'Halo, saya WD Cyber AI Agent. Tanyakan hal seputar phishing, password, OTP, malware, data perusahaan, remote work, pelaporan insiden, atau penggunaan AI yang aman.',
-  },
-]
-
-function findAnswer(message) {
+function findAnswer(message, t) {
   const normalizedMessage = message.toLowerCase()
   const match = aiKnowledgeBase.find((item) => item.keywords.some((keyword) => normalizedMessage.includes(keyword)))
 
@@ -27,13 +21,23 @@ function findAnswer(message) {
   return {
     role: 'agent',
     topic: 'Rekomendasi Umum',
-    text: 'Saya belum menemukan topik yang sangat spesifik. Untuk kondisi mencurigakan, jangan klik link, jangan membagikan password atau OTP, amankan data perusahaan, lalu laporkan ke tim IT.',
+    text: t.ai.fallback,
     actions: ['Jangan ambil tindakan terburu-buru.', 'Verifikasi melalui kanal resmi.', 'Buka daftar materi untuk membaca topik terkait.'],
     relatedMaterialSlug: 'mengenal-cybersecurity',
   }
 }
 
 function AiAgentChat({ compact = false }) {
+  const { t } = useAppPreferences()
+  const initialMessages = useMemo(
+    () => [
+      {
+        role: 'agent',
+        text: t.ai.greeting,
+      },
+    ],
+    [t.ai.greeting],
+  )
   const [messages, setMessages] = useState(initialMessages)
   const [input, setInput] = useState('')
   const canSend = input.trim().length > 0
@@ -45,7 +49,7 @@ function AiAgentChat({ compact = false }) {
       return
     }
 
-    setMessages((current) => [...current, { role: 'user', text }, findAnswer(text)])
+    setMessages((current) => [...current, { role: 'user', text }, findAnswer(text, t)])
     setInput('')
   }
 
@@ -57,12 +61,12 @@ function AiAgentChat({ compact = false }) {
             <Bot className={compact ? 'h-5 w-5' : 'h-6 w-6'} />
           </div>
           <div>
-            <h2 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-slate-950`}>WD Cyber AI Agent</h2>
-            <p className="text-sm text-slate-500">Simulasi assistant edukasi berbasis data lokal</p>
+            <h2 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-slate-950`}>{t.ai.title}</h2>
+            <p className="text-sm text-slate-500">{t.ai.subtitle}</p>
           </div>
         </div>
         <span className={`w-fit rounded-full bg-emerald-50 px-3 py-1 font-semibold text-emerald-700 ring-1 ring-emerald-200 ${compact ? 'text-xs' : 'text-sm'}`}>
-          {answeredQuestions} pertanyaan
+          {answeredQuestions} {t.ai.questions}
         </span>
       </div>
 
@@ -90,7 +94,7 @@ function AiAgentChat({ compact = false }) {
                 )}
                 {message.relatedMaterialSlug && (
                   <Link className="mt-4 inline-flex rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50" to={`/materi/${message.relatedMaterialSlug}`}>
-                    Baca materi terkait
+                    {t.ai.related}
                   </Link>
                 )}
               </div>
@@ -121,17 +125,17 @@ function AiAgentChat({ compact = false }) {
                 sendMessage()
               }
             }}
-            placeholder="Tulis pertanyaan, contoh: email minta OTP harus bagaimana?"
+            placeholder={t.ai.placeholder}
             type="text"
             value={input}
           />
           <button className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-900 disabled:cursor-not-allowed disabled:bg-slate-300" disabled={!canSend} onClick={() => sendMessage()} type="button">
-            Kirim
+            {t.ai.send}
             <CornerDownLeft className="h-4 w-4" />
           </button>
           <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50" onClick={() => setMessages(initialMessages)} type="button">
             <RotateCcw className="h-4 w-4" />
-            Reset
+            {t.ai.reset}
           </button>
         </div>
       </div>
