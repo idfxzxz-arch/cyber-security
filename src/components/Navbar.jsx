@@ -7,6 +7,7 @@ const navItems = [
   { label: 'Materi', path: '/materi' },
   { label: 'Simulasi', path: '/simulasi-phishing' },
   { label: 'Praktik', path: '/praktik' },
+  { label: 'AI Agent', path: '/ai-agent' },
   { label: 'Tips Keamanan', path: '/tips-keamanan' },
   { label: 'Kuis', path: '/kuis' },
   { label: 'Tentang', path: '/tentang' },

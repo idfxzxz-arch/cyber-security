@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import AiAgentPage from './pages/AiAgentPage'
 import AboutPage from './pages/AboutPage'
 import HomePage from './pages/HomePage'
 import MaterialsPage from './pages/MaterialsPage'
@@ -22,6 +23,7 @@ function App() {
             <Route path="/materi/:slug" element={<MaterialDetailPage />} />
             <Route path="/simulasi-phishing" element={<PhishingSimulationPage />} />
             <Route path="/praktik" element={<PracticePage />} />
+            <Route path="/ai-agent" element={<AiAgentPage />} />
             <Route path="/tips-keamanan" element={<SecurityTipsPage />} />
             <Route path="/kuis" element={<QuizPage />} />
             <Route path="/tentang" element={<AboutPage />} />

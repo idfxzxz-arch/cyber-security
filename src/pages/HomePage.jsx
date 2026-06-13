@@ -1,6 +1,7 @@
-import { ClipboardCheck, Database, KeyRound, MailWarning, ShieldAlert } from 'lucide-react'
+import { Bot, ClipboardCheck, Database, KeyRound, MailWarning, ShieldAlert } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../components/HeroSection'
+import AiAgentChat from '../components/AiAgentChat'
 import MaterialCard from '../components/MaterialCard'
 import PhishingCard from '../components/PhishingCard'
 import PracticeCard from '../components/PracticeCard'
@@ -100,6 +101,18 @@ function HomePage() {
       <section className="bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
+            eyebrow="AI Agent"
+            title="Tanya assistant keamanan siber"
+            description="Agent edukasi berbasis data lokal untuk menjawab pertanyaan umum tentang phishing, OTP, password, malware, data, remote work, dan insiden."
+            action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/ai-agent"><Bot className="h-4 w-4" />Buka AI Agent</Link>}
+          />
+          <AiAgentChat />
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+          <SectionHeader
             eyebrow="Praktik"
             title="Coba simulasi keputusan"
             description="Pengguna membaca skenario, memilih tindakan, lalu mendapat feedback langsung tentang keamanan pilihannya."
@@ -109,7 +122,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section>
+      <section className="bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <SectionHeader
             eyebrow="Kuis ringan"
