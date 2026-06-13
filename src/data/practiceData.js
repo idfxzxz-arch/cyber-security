@@ -1,0 +1,218 @@
+export const practiceData = [
+  {
+    id: 1,
+    category: 'Phishing',
+    title: 'Email Payroll Mendesak',
+    scenario: 'Anda menerima email dari payroll-wdgroup@secure-mail.example. Isinya mengatakan akun payroll akan dinonaktifkan hari ini jika Anda tidak login lewat tombol yang tersedia.',
+    question: 'Apa tindakan paling aman?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Klik tombol login dan masukkan password agar akun tidak diblokir.',
+        status: 'Berisiko',
+        feedback: 'Ini berisiko. Domain pengirim bukan domain resmi dan pesan memakai tekanan waktu untuk membuat Anda panik.',
+      },
+      {
+        id: 'b',
+        text: 'Jangan klik link, periksa domain pengirim, lalu laporkan ke tim IT.',
+        status: 'Aman',
+        feedback: 'Benar. Email mendesak dari domain tidak dikenal sebaiknya tidak diklik dan perlu dilaporkan.',
+      },
+      {
+        id: 'c',
+        text: 'Forward email ke rekan kerja agar mereka ikut mengecek link.',
+        status: 'Mencurigakan',
+        feedback: 'Kurang tepat. Meneruskan email berbahaya bisa memperluas risiko. Lebih baik laporkan ke kanal resmi.',
+      },
+    ],
+  },
+  {
+    id: 2,
+    category: 'Password',
+    title: 'Membuat Password Akun Kerja',
+    scenario: 'Sistem meminta Anda mengganti password akun kerja. Anda ingin password yang mudah diingat tetapi tetap kuat.',
+    question: 'Pilihan mana yang paling aman?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Pakai password yang sama dengan akun pribadi agar tidak lupa.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Jika akun pribadi bocor, akun kerja bisa ikut diserang.',
+      },
+      {
+        id: 'b',
+        text: 'Gunakan nama perusahaan dan tahun berjalan, misalnya WDGroup2026.',
+        status: 'Mencurigakan',
+        feedback: 'Masih mudah ditebak karena memakai pola umum dan informasi yang dekat dengan pekerjaan.',
+      },
+      {
+        id: 'c',
+        text: 'Buat frasa panjang yang unik dan simpan di password manager.',
+        status: 'Aman',
+        feedback: 'Benar. Password panjang, unik, dan tersimpan aman lebih kuat untuk akun kerja.',
+      },
+    ],
+  },
+  {
+    id: 3,
+    category: 'OTP',
+    title: 'Kode OTP Diminta Lewat Chat',
+    scenario: 'Seseorang mengaku dari layanan resmi dan meminta OTP yang baru masuk ke ponsel Anda untuk membatalkan transaksi mencurigakan.',
+    question: 'Apa respons terbaik?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Kirim OTP karena tujuannya membatalkan transaksi.',
+        status: 'Berisiko',
+        feedback: 'Sangat berisiko. OTP tidak boleh dibagikan kepada siapa pun, apa pun alasannya.',
+      },
+      {
+        id: 'b',
+        text: 'Tolak memberikan OTP dan hubungi kanal resmi secara mandiri.',
+        status: 'Aman',
+        feedback: 'Benar. Pihak resmi tidak meminta OTP lewat chat atau telepon.',
+      },
+      {
+        id: 'c',
+        text: 'Minta orang tersebut menyebutkan nama lengkap Anda dulu.',
+        status: 'Mencurigakan',
+        feedback: 'Belum aman. Pelaku bisa saja sudah memiliki data pribadi. OTP tetap tidak boleh dibagikan.',
+      },
+    ],
+  },
+  {
+    id: 4,
+    category: 'Malware',
+    title: 'Lampiran Invoice Aneh',
+    scenario: 'Anda menerima lampiran invoice-juni.pdf.exe dari alamat email yang tidak dikenal. Pesannya meminta Anda membuka file hari ini.',
+    question: 'Apa yang sebaiknya dilakukan?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Buka file karena namanya terlihat seperti PDF.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Ekstensi .exe menunjukkan program yang dapat menjalankan malware.',
+      },
+      {
+        id: 'b',
+        text: 'Download file lalu nonaktifkan antivirus jika file tidak bisa dibuka.',
+        status: 'Berisiko',
+        feedback: 'Sangat berisiko. Jangan menonaktifkan proteksi keamanan untuk membuka file mencurigakan.',
+      },
+      {
+        id: 'c',
+        text: 'Jangan buka file, verifikasi pengirim, dan laporkan ke IT.',
+        status: 'Aman',
+        feedback: 'Benar. File dengan ekstensi ganda dari pengirim tidak dikenal harus diperlakukan sebagai ancaman.',
+      },
+    ],
+  },
+  {
+    id: 5,
+    category: 'Data Protection',
+    title: 'Berbagi Dokumen Internal',
+    scenario: 'Anda harus membagikan dokumen strategi internal kepada tim proyek melalui cloud storage.',
+    question: 'Pengaturan sharing mana yang paling aman?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Anyone with the link agar semua orang mudah membuka.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Link publik dapat tersebar dan dibuka pihak yang tidak berwenang.',
+      },
+      {
+        id: 'b',
+        text: 'Bagikan hanya ke akun anggota tim dengan akses sesuai kebutuhan.',
+        status: 'Aman',
+        feedback: 'Benar. Akses terbatas membantu melindungi dokumen internal.',
+      },
+      {
+        id: 'c',
+        text: 'Upload ke akun cloud pribadi lalu kirim link ke grup.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Data perusahaan sebaiknya tetap berada di platform resmi perusahaan.',
+      },
+    ],
+  },
+  {
+    id: 6,
+    category: 'Remote Work',
+    title: 'Bekerja dari Kafe',
+    scenario: 'Anda sedang di kafe dan perlu membuka dokumen kontrak. WiFi publik tersedia tanpa password dan meja Anda dekat antrean pelanggan.',
+    question: 'Apa tindakan paling tepat?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Gunakan WiFi publik dan buka dokumen seperti biasa.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. WiFi publik tanpa password dan layar yang mudah terlihat dapat membuka peluang kebocoran data.',
+      },
+      {
+        id: 'b',
+        text: 'Gunakan hotspot pribadi atau VPN, dan hindari membuka dokumen sensitif di area ramai.',
+        status: 'Aman',
+        feedback: 'Benar. Perhatikan keamanan koneksi dan privasi layar saat bekerja di luar kantor.',
+      },
+      {
+        id: 'c',
+        text: 'Kirim dokumen ke email pribadi agar bisa dibuka dari ponsel.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Dokumen kerja tidak boleh dipindahkan ke akun pribadi tanpa izin.',
+      },
+    ],
+  },
+  {
+    id: 7,
+    category: 'Incident Reporting',
+    title: 'Salah Kirim Email',
+    scenario: 'Anda tidak sengaja mengirim dokumen internal ke alamat email eksternal yang salah.',
+    question: 'Apa langkah pertama yang paling tepat?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Diam saja karena mungkin penerima tidak membuka email.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Keterlambatan laporan dapat memperbesar dampak kebocoran data.',
+      },
+      {
+        id: 'b',
+        text: 'Hapus email terkirim dan anggap masalah selesai.',
+        status: 'Mencurigakan',
+        feedback: 'Tidak cukup. Menghapus email di sisi Anda tidak menghapus email dari penerima dan bisa menghilangkan konteks penting.',
+      },
+      {
+        id: 'c',
+        text: 'Segera laporkan kronologi, waktu, penerima, dan jenis dokumen ke tim terkait.',
+        status: 'Aman',
+        feedback: 'Benar. Pelaporan cepat membantu tim menilai risiko dan menentukan tindakan pemulihan.',
+      },
+    ],
+  },
+  {
+    id: 8,
+    category: 'AI Security',
+    title: 'Merangkum Dokumen dengan AI',
+    scenario: 'Anda ingin menggunakan AI publik untuk merangkum kontrak vendor yang berisi harga, data kontak, dan klausul kerja sama.',
+    question: 'Apa pilihan paling aman?',
+    choices: [
+      {
+        id: 'a',
+        text: 'Upload seluruh dokumen agar AI dapat membuat ringkasan lengkap.',
+        status: 'Berisiko',
+        feedback: 'Berisiko. Dokumen sensitif tidak boleh dimasukkan ke layanan AI publik tanpa persetujuan.',
+      },
+      {
+        id: 'b',
+        text: 'Gunakan prompt umum tanpa data sensitif atau pakai alat AI yang disetujui perusahaan.',
+        status: 'Aman',
+        feedback: 'Benar. AI boleh membantu, tetapi data sensitif harus tetap terlindungi.',
+      },
+      {
+        id: 'c',
+        text: 'Salin hanya halaman tanda tangan karena tidak terlalu panjang.',
+        status: 'Mencurigakan',
+        feedback: 'Masih bermasalah. Halaman tanda tangan bisa berisi data pribadi dan informasi kontraktual.',
+      },
+    ],
+  },
+]
