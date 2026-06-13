@@ -33,7 +33,7 @@ function findAnswer(message) {
   }
 }
 
-function AiAgentChat() {
+function AiAgentChat({ compact = false }) {
   const [messages, setMessages] = useState(initialMessages)
   const [input, setInput] = useState('')
   const canSend = input.trim().length > 0
@@ -51,22 +51,22 @@ function AiAgentChat() {
 
   return (
     <section className="rounded-lg border border-slate-200 bg-white shadow-sm">
-      <div className="flex flex-col gap-4 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className={`flex flex-col gap-4 border-b border-slate-200 ${compact ? 'p-4' : 'p-5 sm:flex-row sm:items-center sm:justify-between'}`}>
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-950 text-white">
-            <Bot className="h-6 w-6" />
+          <div className={`${compact ? 'h-9 w-9' : 'h-11 w-11'} flex items-center justify-center rounded-lg bg-blue-950 text-white`}>
+            <Bot className={compact ? 'h-5 w-5' : 'h-6 w-6'} />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-950">WD Cyber AI Agent</h2>
+            <h2 className={`${compact ? 'text-base' : 'text-xl'} font-bold text-slate-950`}>WD Cyber AI Agent</h2>
             <p className="text-sm text-slate-500">Simulasi assistant edukasi berbasis data lokal</p>
           </div>
         </div>
-        <span className="w-fit rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">
+        <span className={`w-fit rounded-full bg-emerald-50 px-3 py-1 font-semibold text-emerald-700 ring-1 ring-emerald-200 ${compact ? 'text-xs' : 'text-sm'}`}>
           {answeredQuestions} pertanyaan
         </span>
       </div>
 
-      <div className="max-h-[560px] overflow-y-auto bg-slate-50 p-4">
+      <div className={`${compact ? 'max-h-[360px] p-3' : 'max-h-[560px] p-4'} overflow-y-auto bg-slate-50`}>
         <div className="grid gap-4">
           {messages.map((message, index) => (
             <div className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`} key={`${message.role}-${index}`}>
@@ -75,7 +75,7 @@ function AiAgentChat() {
                   <Bot className="h-5 w-5" />
                 </div>
               )}
-              <div className={`max-w-3xl rounded-lg p-4 ${message.role === 'user' ? 'bg-blue-950 text-white' : 'border border-slate-200 bg-white text-slate-700'}`}>
+              <div className={`${compact ? 'max-w-[260px] p-3 text-sm sm:max-w-xs' : 'max-w-3xl p-4'} rounded-lg ${message.role === 'user' ? 'bg-blue-950 text-white' : 'border border-slate-200 bg-white text-slate-700'}`}>
                 {message.topic && <p className="mb-2 text-xs font-bold uppercase tracking-wide text-blue-700">{message.topic}</p>}
                 <p className="leading-7">{message.text}</p>
                 {message.actions && (
@@ -104,15 +104,15 @@ function AiAgentChat() {
         </div>
       </div>
 
-      <div className="border-t border-slate-200 p-4">
+      <div className={`border-t border-slate-200 ${compact ? 'p-3' : 'p-4'}`}>
         <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
-          {suggestedQuestions.map((question) => (
+          {suggestedQuestions.slice(0, compact ? 4 : suggestedQuestions.length).map((question) => (
             <button className="shrink-0 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50" key={question} onClick={() => sendMessage(question)} type="button">
               {question}
             </button>
           ))}
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
+        <div className={`flex flex-col gap-3 ${compact ? '' : 'sm:flex-row'}`}>
           <input
             className="min-h-11 flex-1 rounded-lg border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-blue-900 focus:ring-2 focus:ring-blue-100"
             onChange={(event) => setInput(event.target.value)}

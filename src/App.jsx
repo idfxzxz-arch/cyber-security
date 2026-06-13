@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import FloatingAiAgent from './components/FloatingAiAgent'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import AiAgentPage from './pages/AiAgentPage'
@@ -30,6 +31,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <FloatingAiAgent />
       </div>
     </BrowserRouter>
   )

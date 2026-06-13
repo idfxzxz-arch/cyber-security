@@ -1,7 +1,6 @@
 import { Bot, ClipboardCheck, Database, KeyRound, MailWarning, ShieldAlert } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import HeroSection from '../components/HeroSection'
-import AiAgentChat from '../components/AiAgentChat'
 import MaterialCard from '../components/MaterialCard'
 import PhishingCard from '../components/PhishingCard'
 import PracticeCard from '../components/PracticeCard'
@@ -106,7 +105,24 @@ function HomePage() {
             description="Agent edukasi berbasis data lokal untuk menjawab pertanyaan umum tentang phishing, OTP, password, malware, data, remote work, dan insiden."
             action={<Link className="inline-flex items-center gap-2 rounded-lg bg-blue-950 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900" to="/ai-agent"><Bot className="h-4 w-4" />Buka AI Agent</Link>}
           />
-          <AiAgentChat />
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-950 text-white">
+                  <Bot className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-950">Bantuan cepat tanpa memenuhi halaman</h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    Klik tombol AI Agent di pojok kanan bawah untuk membuka chat pop-up profesional kapan pun dibutuhkan.
+                  </p>
+                </div>
+              </div>
+              <Link className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" to="/ai-agent">
+                Mode penuh
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
