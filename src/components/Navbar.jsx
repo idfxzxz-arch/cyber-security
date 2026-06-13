@@ -9,7 +9,6 @@ const navItems = [
   { labelKey: 'materials', path: '/materi' },
   { labelKey: 'simulation', path: '/simulasi-phishing' },
   { labelKey: 'practice', path: '/praktik' },
-  { labelKey: 'aiAgent', path: '/ai-agent' },
   { labelKey: 'tips', path: '/tips-keamanan' },
   { labelKey: 'quiz', path: '/kuis' },
   { labelKey: 'about', path: '/tentang' },
@@ -33,7 +32,7 @@ function Navbar() {
           <span className="whitespace-nowrap text-base font-bold text-slate-950 sm:text-lg">WD Cybersecurity</span>
         </NavLink>
 
-        <div className="hidden items-center gap-1 xl:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <NavLink className={navClass} key={item.path} to={item.path}>
               {t.nav[item.labelKey]}
@@ -44,13 +43,13 @@ function Navbar() {
           </div>
         </div>
 
-        <button className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 xl:hidden" onClick={() => setOpen((value) => !value)} type="button" aria-label="Buka menu">
+        <button className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 lg:hidden" onClick={() => setOpen((value) => !value)} type="button" aria-label="Buka menu">
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
       {open && (
-        <div className="max-h-[calc(100vh-73px)] overflow-y-auto border-t border-slate-200 bg-white px-4 py-3 xl:hidden">
+        <div className="max-h-[calc(100vh-73px)] overflow-y-auto border-t border-slate-200 bg-white px-4 py-3 lg:hidden">
           <div className="mx-auto grid max-w-7xl gap-2">
             {navItems.map((item) => (
               <NavLink className={navClass} key={item.path} onClick={() => setOpen(false)} to={item.path}>
